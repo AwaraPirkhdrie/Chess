@@ -1,0 +1,33 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        xmlns:local="Chess:Chess.View"        
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" x:Class="Chess.View.PlyerInformation"        
+        mc:Ignorable="d"
+        Title="PlyerInformation" Height="432" Width="453" WindowStyle="ToolWindow">
+
+
+
+
+    <Grid>
+
+        <Button x:Name="binPlyer" Content="Start" HorizontalAlignment="Left" Margin="167,294,0,0" VerticalAlignment="Top" Height="39" Width="132" Click="Button_Click"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="98,56,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNameBlack" HorizontalAlignment="Left" Margin="170,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Country" HorizontalAlignment="Left" Margin="98,91,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtBlackCountry" HorizontalAlignment="Left" Margin="170,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="98,168,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNameWhite" HorizontalAlignment="Left" Margin="170,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Country" HorizontalAlignment="Left" Margin="98,199,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtWhiteCountry" HorizontalAlignment="Left" Margin="170,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Plyer Black" HorizontalAlignment="Left" Margin="170,20,0,0" VerticalAlignment="Top"/>
+        <Label Content="Plyer White" HorizontalAlignment="Left" Margin="170,141,0,0" VerticalAlignment="Top"/>
+        <Image x:Name="img" HorizontalAlignment="Left" Height="68" Margin="346,52,0,0" VerticalAlignment="Top" Width="64" Source="/View/B_B.png"/>
+        <Image x:Name="img_Copy" HorizontalAlignment="Left" Height="68" Margin="346,160,0,0" VerticalAlignment="Top" Width="64" Source="/View/B_W.png"/>
+        <Label Content="White player strat" HorizontalAlignment="Center" Margin="0,251,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+
+    </Grid>
+</Window>

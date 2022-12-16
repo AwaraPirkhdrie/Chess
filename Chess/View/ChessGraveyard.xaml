@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="Chess.View.ChessGraveyard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Chess.View"
+             xmlns:vn="clr-namespace:Chess.ViewModel"
+             xmlns:converter="clr-namespace:Chess.Converter"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="250">
+   
+    <UserControl.Resources>
+        <converter:GraveyardImageConverter x:Key="GraveyardImageConverter"></converter:GraveyardImageConverter>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <TextBlock Text="Pieces taken by Black" HorizontalAlignment="Center" TextBlock.FontSize="16"></TextBlock>
+        <Grid Width="200" Height="200" Background="LightGray" Margin="5 10 5 35">
+          
+            <ItemsControl ItemsSource="{Binding Path=BlackGraveyard, Converter={StaticResource GraveyardImageConverter}, ConverterParameter=white}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid></UniformGrid>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label BorderBrush="Black" BorderThickness="1">
+                            <Image Source="{Binding}"></Image>
+                        </Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+
+     
+        <Grid Width="200" Height="200" Background="LightGray" Margin="5 10 5 10">
+            <ItemsControl ItemsSource="{Binding Path=WhiteGraveyard, Converter={StaticResource GraveyardImageConverter}, ConverterParameter=black}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid></UniformGrid>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label BorderBrush="Black" BorderThickness="1">
+                            <Image  Source="{Binding}"></Image>
+                        </Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+        <TextBlock Text="Pieces taken by White" HorizontalAlignment="Center" TextBlock.FontSize="16"></TextBlock>
+    </StackPanel>
+    
+</UserControl>

@@ -1,0 +1,83 @@
+﻿<Window x:Class="Chess.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Chess.View"
+        xmlns:converter="clr-namespace:Chess.Converter"
+        xmlns:vn="clr-namespace:Chess.ViewModel"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" Background="#FFF3F1F1"
+        Title="Chess"
+        Icon="Images/K_W.png" Width="1250">
+
+    <Window.DataContext>
+        <vn:GameStateVM x:Name="GameSessionVM"></vn:GameStateVM>
+    </Window.DataContext>
+
+    <Grid DataContext="{Binding}" Height="801">
+
+        <Grid.Resources>
+            <converter:BoardHeightConverter x:Key="HeightConverter"></converter:BoardHeightConverter>
+            <converter:BoardWidthConverter x:Key="WidthConverter"></converter:BoardWidthConverter>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <local:Menu VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" Height="651" Width="190"></local:Menu>
+
+        <Grid Margin="0,0,0,63">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="{Binding CurrentBoard, Converter={StaticResource WidthConverter}}"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="{Binding CurrentBoard, Converter={StaticResource HeightConverter}}"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Background="#FFCE915D" Grid.Column="1" Grid.Row="1"></Label>
+            <Label Background="#FFCE915D" Grid.Column="3" Grid.Row="1"></Label>
+            <Label Background="#FFCE915D" Grid.Column="1" Grid.Row="3"></Label>
+            <Label Background="#FFCE915D" Grid.Column="3" Grid.Row="3"></Label>
+
+
+            <local:ChessBoardColumnBorder Grid.Column="2" Grid.Row="1"></local:ChessBoardColumnBorder>
+            <local:ChessBoardColumnBorder Grid.Column="2" Grid.Row="3" Loaded="ChessBoardColumnBorder_Loaded"></local:ChessBoardColumnBorder>
+            <local:ChessBoardRowBorder Grid.Column="3" Grid.Row="2"></local:ChessBoardRowBorder>
+            <local:ChessBoardRowBorder Grid.Column="1" Grid.Row="2"></local:ChessBoardRowBorder>
+            <local:ChessBoardBackground Grid.Column="2" Grid.Row="2"></local:ChessBoardBackground>
+            <local:PossibleMoves Grid.Column="2" Grid.Row="2"></local:PossibleMoves>
+            <local:InCheckSignal HorizontalAlignment="Left" VerticalAlignment="Top"  Grid.Column="2" Grid.Row="2"></local:InCheckSignal>
+            <local:ChessPieceImages Grid.Column="2" Grid.Row="2"></local:ChessPieceImages>
+            <local:ChessBoardButtons Grid.Column="2" Grid.Row="2" BorderThickness="2" BorderBrush="White" Loaded="ChessBoardButtons_Loaded"></local:ChessBoardButtons>
+            <Label Grid.Column="5" Content="Name:" HorizontalAlignment="Left" Margin="4,631,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.RowSpan="2"/>
+            <Label x:Name="lbNameWhite" Grid.Column="5" Content="" HorizontalAlignment="Left" Margin="55,630,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Foreground="#FF00AF13" Grid.RowSpan="2"/>
+            <Label Grid.Column="5" Content="Country:" HorizontalAlignment="Left" Margin="111,631,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.RowSpan="2"/>
+            <Label x:Name="ibCountryWhite" Grid.Column="5" Content="" HorizontalAlignment="Left" Margin="144,10,0,0" Grid.Row="3" VerticalAlignment="Top"/>
+            <Label Grid.Column="4" Content="Name:" HorizontalAlignment="Left" Margin="34,21,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+            <Label Grid.Column="5" Content="Country:" HorizontalAlignment="Left" Margin="110,21,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+            <Label x:Name="txtBlack" Grid.Column="5" Content="" HorizontalAlignment="Left" Margin="40,21,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Foreground="#FF00AF13"/>
+            <Label x:Name="txtBlackCountry" Grid.Column="5" Content="" HorizontalAlignment="Left" Margin="169,21,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FF00AF13" FontSize="14" FontWeight="Bold"/>
+            <Label x:Name="lblCountryWhite" Grid.Column="5" Content="" HorizontalAlignment="Left" Margin="169,630,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FF00AF13" FontSize="14" FontWeight="Bold" Grid.RowSpan="2"/>
+
+
+        </Grid>
+        <local:ChessGraveyard VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1000,0,0,0" Height="507" Width="210"/>
+        <Button Content="Save Game" HorizontalAlignment="Left" Margin="346,752,0,0" VerticalAlignment="Top" Height="33" Width="218" Click="Button_Click"/>
+        <Button Command="{Binding StartNewGameSession}"  Content="New Game" HorizontalAlignment="Left" Margin="116,752,0,0" VerticalAlignment="Top" Height="33" Width="218"/>
+        <Button Content="Load Game" HorizontalAlignment="Left" Margin="580,752,0,0" VerticalAlignment="Top" Width="218" Height="33" Click="Button_Click_1"/>
+        <Button Content="Load Turn" HorizontalAlignment="Left" Margin="810,752,0,0" VerticalAlignment="Top" Width="218" Height="33"/>
+        <Button Content="Cloth Game" HorizontalAlignment="Left" Margin="1090,752,0,0" VerticalAlignment="Top" Width="108" Height="33" Click="Button_Click_2"/>
+    </Grid>
+</Window>
